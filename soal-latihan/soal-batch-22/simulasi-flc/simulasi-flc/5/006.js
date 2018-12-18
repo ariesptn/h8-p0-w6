@@ -14,12 +14,20 @@ function akan mereturn sebuah sebuah number yang hanya sisa baginya nol dari bil
 - Tidak boleh menggunakan looping while/for    
 */
 
-function dividableRecursive (array, num) {
-    
+function dividableRecursive(array, num) {
+    if (array.length < 1) {
+        return ''
+    }
+    let dividable = ''
+    if (array[0] % num === 0) {
+        dividable = array[0] + ' '
+    }
+    array.shift()
+    return dividable + dividableRecursive(array, num)
 }
 
 // DRIVER CODE
-console.log(dividableRecursive([66 , 33 , 55 , 44 , 11], 3)) // 66 33
-console.log(dividableRecursive([123 , 222 , 100 , 50 , 32], 2)) // 222 100 50 32
-console.log(dividableRecursive([125 , 500 , 201 , 202 , 66], 5)) // 125 500
-console.log(dividableRecursive([66 , 33 , 55 , 44 , 132], 6)) // 66 132
+console.log(dividableRecursive([66, 33, 55, 44, 11], 3)) // 66 33
+console.log(dividableRecursive([123, 222, 100, 50, 32], 2)) // 222 100 50 32
+console.log(dividableRecursive([125, 500, 201, 202, 66], 5)) // 125 500
+console.log(dividableRecursive([66, 33, 55, 44, 132], 6)) // 66 132

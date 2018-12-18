@@ -28,17 +28,17 @@ output: Rp2.000,00
 
 
 function formatUang(number) {
-
-  var strNum = String(number);
-  var result = []
-  var str = ""
-  for(var i = 0; i < strNum.length; i++){
-    // console.log(strNum[i])
-    if(strNum.length%3 === 0){
-      str += "." + strNum[i]
+  let result = ',00'
+  let counter = 1
+  for (let i = number.toString().length - 1; i >= 0; i--) {
+    result = number.toString()[i] + result
+    if (counter % 3 === 0 && i !== 0) {
+      result = '.' + result
     }
+    counter++
   }
-  console.log(str)
+  result = 'Rp' + result;
+  return result
 }
 
 console.log(formatUang(7500)); // Rp7.500,00

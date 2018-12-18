@@ -12,18 +12,32 @@ diubah-ubah dan asumsi uang kembaliannya selalu cukup dengan jumlah ketersediaan
  
 */
 
-function hitungKembalian(bayar, harga){
+function hitungKembalian(bayar, harga) {
 
   var ketersediaanUang = [
-      { nominal: 100000, jumlah: 5},
-      { nominal: 50000, jumlah: 5},
-      { nominal: 20000, jumlah: 5 },
-      { nominal: 10000, jumlah: 5},
-      { nominal: 5000, jumlah: 5}
+    { nominal: 100000, jumlah: 5 },
+    { nominal: 50000, jumlah: 5 },
+    { nominal: 20000, jumlah: 5 },
+    { nominal: 10000, jumlah: 5 },
+    { nominal: 5000, jumlah: 5 }
   ];
-
-  //Your code here  
-
+  let sisa = bayar - harga
+  if (sisa < 0) {
+    return 'Uang tidak cukup'
+  }
+  let index = 0
+  let result = {}
+  while (sisa >= ketersediaanUang[ketersediaanUang.length - 1].nominal && index < ketersediaanUang.length) {
+    if (sisa >= ketersediaanUang[index].nominal) {
+      sisa -= ketersediaanUang[index].nominal
+      ketersediaanUang[index].jumlah -= 1
+      result[ketersediaanUang[index].nominal] = result[ketersediaanUang[index].nominal] + 1 || 1
+    }
+    if (ketersediaanUang[index].jumlah < 1 || sisa < ketersediaanUang[index].nominal) {
+      index++
+    }
+  }
+  return result
 }
 // console.log(kembalian)
 
@@ -32,34 +46,34 @@ function hitungKembalian(bayar, harga){
 console.log(hitungKembalian(1000000, 755000));
 /*
 output
-  { 
-    '5000': 1, 
-    '20000': 2, 
-    '100000': 2 
+  {
+    '5000': 1,
+    '20000': 2,
+    '100000': 2
   }
 */
 
 // Test Case
-// console.log(hitungKembalian(40000, 35000));
+console.log(hitungKembalian(40000, 35000));
 /*
 output
   { '5000': 1 }
 */
 
 // Test Case 3
-// console.log(hitungKembalian(920000, 80000));
+console.log(hitungKembalian(920000, 80000));
 /*
 output
-  { 
-    '10000': 1, 
-    '20000': 4, 
-    '50000': 5, 
-    '100000': 5 
+  {
+    '10000': 1,
+    '20000': 4,
+    '50000': 5,
+    '100000': 5
   }
 */
 
 // TEST CASE 4
-// console.log(hitungKembalian(50000,50000)); // {}
+console.log(hitungKembalian(50000, 50000)); // {}
 
 // TEST CASE 5
 // console.log(hitungKembalian(50000,500000)); // Uang tidak cukup

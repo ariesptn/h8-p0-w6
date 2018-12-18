@@ -32,64 +32,17 @@
   mobil dan memiliki plat genap    
 */
 
-function ganjilGenapAsianGames ( date, data ) {
-
-  var counter = 0;
-
-  if(date%2 === 0){
-    var temp = []
-    for(var i = 0; i < data.length; i++){
-      // console.log(data[i])
-      if(data[i].type === "Mobil"){
-        temp.push(data[i].plat)
-      }
-    }
-
-    var number = [];
-    // var counter = 0
-    for(var j = 0; j < temp.length; j++){
-      // console.log(temp[j])
-      var str = ""
-      for(var k = 0; k < temp[j].length; k++){
-        if(temp[j][k] === "1" || temp[j][k] === "2" ||temp[j][k] === "3" ||temp[j][k] === "4" ||temp[j][k] === "5" ||temp[j][k] === "6" ||temp[j][k] === "7" || temp[j][k] === "8" || temp[j][k] === "9" || temp[j][k] === "10"){
-          str += temp[j][k]
-        }
-      }
-      // console.log(str)
-      number.push(str);
-
-      if(str%2 === 0){
-        counter++
-      }
-    }
-    // console.log(counter)console.log(str)
-  } else if (date%2 === 1){
-    var mobil = []
-    for(var i = 0; i < data.length; i++){
-      // console.log(data[i])
-      if(data[i].type === "Mobil"){
-        mobil.push(data[i].plat)
-      }
-    }
-    // console.log(mobil)
-    var number = [];
-    // var counter = 0
-    for(var j = 0; j < mobil.length; j++){
-      // console.log(temp[j])
-      var str1 = ""
-      for(var k = 0; k < mobil[j].length; k++){
-        if(mobil[j][k] === "1" || mobil[j][k] === "2" ||mobil[j][k] === "3" ||mobil[j][k] === "4" ||mobil[j][k] === "5" ||mobil[j][k] === "6" ||mobil[j][k] === "7" || mobil[j][k] === "8" || mobil[j][k] === "9" || mobil[j][k] === "10"){
-          str1 += mobil[j][k]
-        }
-      }
-      // console.log(str)
-      number.push(str);
-      if(str1%2 === 0){
-        counter++
-      }
+function ganjilGenapAsianGames(date, data) {
+  if (date < 1 || date > 31) {
+    return 'invalid date'
+  }
+  let result = 0
+  for (let o of data) {
+    if ((o.plat.split(' ')[1] * 1) % 2 !== date % 2 && o.type === 'Mobil') {
+      result += 1
     }
   }
-  return counter
+  return result
 }
 
 
