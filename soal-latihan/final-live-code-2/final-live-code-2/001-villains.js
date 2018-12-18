@@ -34,31 +34,24 @@ algoritma:
 */
 
 function test(array) {
-
-    var traps = 0;
-    var villains = 0;
-
-    for (var i = 0; i < array.length; i++) {
-        // console.log(array[i])
-        if(array[i] === "@"){
-            traps += 1
-            if(traps === 3){
-                return "oops you just died, you got " + villains + " Villains!";
+    let hp = 3
+    let villain = 0
+    for (let s of array) {
+        if (s === '@') {
+            hp--
+            if (hp < 1) {
+                return 'Ooops, you die. You got ' + villain + ' villains'
             }
-        }
-        if(array[i] === "Villain"){
-            villains += 1
+        } else if (s === 'Villain') {
+            villain++
         }
     }
-
-    if(traps < 3){
-        return "Nice job! You got " + villains + " Villains!"
-    }
+    return 'Nice work, detective! You got all villains: ' + villain
 }
 
 
-console.log(test(['*', '*', '@', '*', 'Villain', '*',  '@', 'Villain']));
-console.log(test(['*', '*', '@', '*', '@' ,'Villain', '*', 'Villain', 'Villain', '@']));
-console.log(test(['*', '*', '@', '*', '@' ,'Villain', '*', 'Villain',  '@', 'Villain']));
+console.log(test(['*', '*', '@', '*', 'Villain', '*', '@', 'Villain']));
+console.log(test(['*', '*', '@', '*', '@', 'Villain', '*', 'Villain', 'Villain', '@']));
+console.log(test(['*', '*', '@', '*', '@', 'Villain', '*', 'Villain', '@', 'Villain']));
 
 // 11 mins

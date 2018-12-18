@@ -46,73 +46,63 @@
     }
 */
 
-function getMemberSummary (member) {
-
-  if(!member.length){
+function getMemberSummary(member) {
+  if (!member.length) {
     return "NO data"
-  } else {
-
-    var obj = {
-      total_member : member.length,
-      oldest_member : {
-        full_name : member[0].first_name + " " + member[0].last_name,
-        age : member[0].age
-      },
-      youngest_member : {
-        full_name : member[0].first_name + " " + member[0].last_name,
-        age : member[0].age
-      },
-      average_member_age : 0
-    }
-    // console.log(obj)
-    var sum = 0;
-    for(var i = 0; i < member.length; i++){
-      sum += member[i].age;
-
-      if(member[i].age > obj.oldest_member.age){
-        obj.oldest_member = {
-          full_name : member[i].first_name + " " + member[i].last_name,
-          age : member[i].age
-        }
-      }
-      
-      if (member[i].age <= obj.youngest_member.age){
-        obj.youngest_member = {
-          full_name : member[i].first_name + " " + member[i].last_name,
-          age : member[i].age
-        }
-      }
-    }
-    obj.average_member_age = Math.round(sum/obj.total_member);
-    console.log(obj)
   }
- }
+  let youngestIndex = 0
+  let oldestIndex = 0
+  let totalAge = 0
+  for (let i in member) {
+    if (member[i].age < member[youngestIndex].age) {
+      youngestIndex = i
+    }
+    if (member[i].age > member[oldestIndex].age) {
+      oldestIndex = i
+    }
+    totalAge += member[i].age
+  }
+  let averageAge = totalAge / member.length
+  let result = {
+    total_member: member.length,
+    oldest_member: {
+      full_name: member[oldestIndex].first_name + ' ' + member[oldestIndex].last_name,
+      age: member[oldestIndex].age
+    },
+    youngest_member: {
+      full_name: member[youngestIndex].first_name + ' ' + member[youngestIndex].last_name,
+      age: member[youngestIndex].age
+    },
+    average_member_age: Math.round(averageAge)
+  }
+  return result
+}
 
 console.log(getMemberSummary([{
-        first_name: 'Wika',
-        last_name: 'Silo',
-        age: 30
-      }, {
-        first_name: 'Dhani',
-        last_name: 'Damara',
-        age: 27
-      }, {
-        first_name: 'Fandy',
-        last_name: 'Barestu',
-        age: 18
-      }, {
-        first_name: 'Acha',
-        last_name: 'Acha',
-        age: 29
-      }, {
-        first_name: 'Zena',
-        last_name: 'Villenia',
-        age: 32
-      }, {
-        first_name: 'Annisa',
-        last_name: 'Ayu',
-        age: 21
-      }],
+  first_name: 'Wika',
+  last_name: 'Silo',
+  age: 30
+}, {
+  first_name: 'Dhani',
+  last_name: 'Damara',
+  age: 27
+}, {
+  first_name: 'Fandy',
+  last_name: 'Barestu',
+  age: 18
+}, {
+  first_name: 'Acha',
+  last_name: 'Acha',
+  age: 29
+}, {
+  first_name: 'Zena',
+  last_name: 'Villenia',
+  age: 32
+}, {
+  first_name: 'Annisa',
+  last_name: 'Ayu',
+  age: 21
+}],
 ));
 //output
 /*
@@ -197,7 +187,7 @@ console.log(getMemberSummary([])) //NO DATA
 //   // AVERAGE:
 //   var totalAge = 0;
 //   // console.log(result.oldest_member);
-  
+
 //   for (var i=0; i<member.length; i++) {
 //     // console.log(member[i].age);
 //     totalAge += member[i].age;

@@ -42,28 +42,17 @@ Dilarang menggunakan sintaks Set atau Regex
 // Nilai tidak valid (0) jika logic dan code berbeda!
 
 function initialGrouping(studentsArr) {
-  var obj = {};
-  var result = [];
-
-  for(var i = 0; i < studentsArr.length; i++){
-    // console.log(studentsArr[i][0])
-    if(obj[studentsArr[i][0]] === undefined){
-      obj[studentsArr[i][0]] = [studentsArr[i]]
-    } else {
-      obj[studentsArr[i][0]].push(studentsArr[i])
-    }
+  let studentsObj = {}
+  for (let s of studentsArr) {
+    studentsObj[s[0]] = studentsObj[s[0]] || []
+    studentsObj[s[0]].push(s)
   }
-  // console.log(obj)
-  var keys = Object.keys(obj);
-  var values = Object.values(obj)
-
-  // console.log(values)
-
-  for(var j = 0; j < keys.length; j++){
-    result.push([keys[j]]);
-    for(var k = 0; k < values[j].length; k++){
-      result[j].push(values[j][k])
-      // console.log(values[j][k])
+  let result = []
+  for (let s in studentsObj) {
+    result.push([])
+    result[result.length - 1].push(s)
+    for (s1 of studentsObj[s]) {
+      result[result.length - 1].push(s1)
     }
   }
   return result

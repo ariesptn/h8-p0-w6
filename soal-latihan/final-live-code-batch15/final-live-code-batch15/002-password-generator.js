@@ -59,29 +59,12 @@ ENDIF
 */
 
 function passGen(firstName, email, age) {
-  if(firstName.length < 3){
-    return "NAME IS INVALID"
+  if (firstName.length < 3) {
+    return 'NAMA IS INVALID!'
   }
-
-  var strName = ""
-  for (var i = 0; i < firstName.length; i++) {
-    // console.log(firstName[i])
-    if(i < 3){
-      strName += firstName[i]
-    }
-  }
-
-  var newEmail = ""
-  for (var i = 0; i < email.length; i++) {
-    // console.log(email[i])
-    if(email[i] === "@"){
-      break;
-    } else {
-      newEmail += email[i]
-    }
-  }
-
-  return strName + newEmail + age
+  let name2 = firstName.substring(0, 3)
+  let email2 = email.split('@')[0]
+  return name2 + email2 + age
 }
 
 console.log(passGen('john', 'hello@gmail.com', 15)); // 'johhello15' 

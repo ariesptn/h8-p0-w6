@@ -38,27 +38,19 @@ STORE "str" with the value of
 */
 
 function uniqueFinder(sentence) {
-
-  var result = [];
-
-  var lowerCase = sentence.toLowerCase()
-  var str = lowerCase.split(" ")
-  // var isEmpty = true;
-
-  for(var i = 0; i < str.length; i++){
-    // console.log(str[i])
-    var isEmpty = true
-    for(var j = 0; j < result.length; j++){
-      // console.log(result[j])
-      if(str[i] === result[j]){
-        isEmpty = false
-      }
-    }
-    if(isEmpty === true){
-      result.push(str[i])
-    }
+  if (sentence.trim() === '') {
+    return 'No Words'
   }
-  return result
+  let wordsObj = {}
+  let wordSplit = sentence.split(' ')
+  let wordsArr = []
+  for (let s of wordSplit) {
+    wordsObj[s.toLowerCase()] = wordsObj[s.toLowerCase()] + 1 || 1
+  }
+  for (let k in wordsObj) {
+    wordsArr.push(k)
+  }
+  return wordsArr
 }
 
 console.log(uniqueFinder('hello black dragon and hello red dragon')); // ['hello', 'black', 'dragon', 'and', 'red']
@@ -72,7 +64,7 @@ console.log(uniqueFinder('')); // 'NO WORDS'
 //   // console.log(strNoUpperLower);
 //   var array = strNoUpperLower.split(' ')
 //   // console.log(array);
-  
+
 //   var obj = {};
 
 //   for (var i=0; i<array.length; i++) {
@@ -90,15 +82,15 @@ console.log(uniqueFinder('')); // 'NO WORDS'
 
 // }
 
-/* LOGIKA: 
+/* LOGIKA:
 STORE "obj" with the value of empty Object
 
   FOR LOOP index 0 to length of array
     IF obj[array[i]] EQUALS to undefined (in this step we will initialize the object)
       obj[array[i]] = 1 (jika tidak bertemu dengan kalimat yang berulang maka akan di hitung 1)
-    ELSE 
+    ELSE
       obj[array[i]] ADD by 1 (jika bertemu dengan kalimat yang berulang maka akan bertambah 1)
-    END IF 
+    END IF
   EXIT LOOP
 
 STORE "result" = in this variable we will change the object to "keys", karena untuk mengabil value yang tidak berulang

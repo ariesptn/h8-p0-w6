@@ -11,20 +11,16 @@ Contoh input dan output bisa dilihat di test case.
 
 */
 
-function trainSeating (penumpang) {
-
-  var obj = {};
-
-  for(var i = 0; i < penumpang.length; i++){
-    // console.log(penumpang[i])
-    if(obj[penumpang[i].gerbong] === undefined){
-      obj[penumpang[i].gerbong] = [penumpang[i]]
-    } else {
-      obj[penumpang[i].gerbong].push(penumpang[i])
-    }
-    delete penumpang[i].gerbong
+function trainSeating(penumpang) {
+  let result = {}
+  for (let o of penumpang) {
+    result[o.gerbong] = result[o.gerbong] || []
+    result[o.gerbong].push({
+      nama: o.nama,
+      sear: o.seat
+    })
   }
-  return obj
+  return result
 }
 
 

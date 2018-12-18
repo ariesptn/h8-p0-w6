@@ -105,28 +105,20 @@ NOTE:
 // console.log(squareNumber(2)); // Minimal input adalah 3
 
 function squareNumber(param1) {
-
-  if(param1 < 3){
-    return "Minimal input adalah 3";
-  } else {
-    var result = [];
-    var count = param1*param1;
-    // console.log(height)
-
-    for(var i = 0; i < param1; i++){
-      // console.log(i)
-      result.push([])
-      for(var j = param1; j > 0; j--){
-        if(i%2 === 0){
-          result[i].unshift(count)
-        } else {
-          result[i].push(count)
-        }
-        count--
+  let result = []
+  let counter = 1
+  for (let i = 0; i < param1; i++) {
+    result.unshift([])
+    for (let j = 0; j < param1; j++) {
+      if (i % 2 === 0) {
+        result[0].push(counter)
+      } else {
+        result[0].unshift(counter)
       }
+      counter++
     }
-    return result
   }
+  return result
 }
 
 console.log(squareNumber(3));

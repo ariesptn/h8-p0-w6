@@ -73,32 +73,30 @@ RULES:
 // console.log(countSolo([ 3, 6, 3, 6, 1, 1, 2, 1 ]))  // 2 (2)
 // console.log(countSolo([ 3, 3, 3, 3, 4, 5, 8, 10, 11 ])) // 38 ()
 
-function countSolo (numbers) {
-
-  var obj = {};
-  var strNum = [];
-  for(var i = 0; i < numbers.length; i++){
-    // console.log(numbers[i])
-    if(obj[numbers[i]] === undefined){
-      obj[numbers[i]] = 1
-    } else {
-      obj[numbers[i]]++
+function countSolo(numbers) {
+  let jombloObj = {}
+  let jombloArr = []
+  let total = 0
+  for (let n of numbers) {
+    jombloObj[n] = jombloObj[n] + 1 || 1
+  }
+  for (let k in jombloObj) {
+    if (jombloObj[k] === 1) {
+      n = parseInt(k)
+      total += n
+      jombloArr.push(n)
     }
   }
-  // console.log(obj)
-  var result = 0;
-  for(var keys in obj){
-    if(obj[keys] === 1){
-      // console.log(keys)
-      result += Number(keys)
-    }
+  let result = total + ' ('
+  for (let n of jombloArr) {
+    result += n + ','
   }
-
+  result = result.substring(0, result.length - 1) + ')'
   return result
 }
 
-console.log(countSolo([ 5, 5, 6, 6, 3, 1, 2, 7, 7])) // 6 (3,1,2)
-console.log(countSolo([ 3, 6, 3, 6, 1, 1, 2, 1 ]))  // 2 (2)
-console.log(countSolo([ 3, 3, 3, 3, 4, 5, 8, 10, 11 ])) // 38 ()
+console.log(countSolo([5, 5, 6, 6, 3, 1, 2, 7, 7])) // 6 (3,1,2)
+console.log(countSolo([3, 6, 3, 6, 1, 1, 2, 1]))  // 2 (2)
+console.log(countSolo([3, 3, 3, 3, 4, 5, 8, 10, 11])) // 38 ()
 
 // NEW : 4 minutes 54 sec

@@ -19,21 +19,15 @@ output: [ [ 1 ] , [ 2, 2 ] ]
 
 */
 function piramidaArray(number) {
-  if(number === "A"){
+  if (typeof number !== 'number' || number < 1) {
     return 0
   }
-
-  var result = [[]];
-  var temp = []
-  for (var i = 1; i < number; i++){
-    // console.log(i)
-    // result.push([i])
-    for (var j = 1; j <= i; j++) {
-      // console.log(j)
-      temp.push(i)
+  let result = []
+  for (let i = 0; i < number; i++) {
+    result.push([])
+    for (let j = 0; j < i; j++) {
+      result[i].push(i)
     }
-    result.push(temp)
-    temp = []
   }
   return result
 }
@@ -47,7 +41,7 @@ console.log(piramidaArray(0)); // 0
 //hedya
 
   // // console.log(typeof(number));
-  
+
   // if (number === 0 || typeof(number) !== typeof(131)) { // angka 131 bisa diganti apa aja
   //   return 0;
   // }

@@ -17,22 +17,24 @@
 */
 
 function consonantCounterRecursive(sentences) {
-
-  if(sentences.length === 0){
+  if (!sentences.length) {
     return 0
-  } else {
-    // var consonant = "bcdfghjklmnpqrstuvwxyz";
-    var vowels = "aiueo";
-    var check = sentences[0].toLowerCase();
-    var count = 0;
-
-    if(vowels.indexOf(check) !== -1){
-      count++
-    }
-    return count + consonantCounterRecursive(sentences.slice(1))
-
   }
-  
+  let vowels = 'aeiou'
+  let firstLetter = sentences[0].toLowerCase()
+  let isVowel = false
+  for (s of vowels) {
+    if (s === firstLetter) {
+      isVowel = true
+      break
+    }
+  }
+  if (!isVowel && firstLetter.codePointAt(0) >= 97 && firstLetter.codePointAt(0) <= 122) {
+    return 1 + consonantCounterRecursive(sentences.substring(1))
+  }
+  else {
+    return consonantCounterRecursive(sentences.substring(1))
+  }
 }
 
 console.log(consonantCounterRecursive('alDi Suka MakAn baksO')) //13
@@ -47,17 +49,17 @@ console.log(consonantCounterRecursive('awt6an')) // 3
 //   // console.log(lowCase);
 //   var firstWord = lowCase[0]; 
 //   // console.log(firstWord);
-  
+
 //   var modifSentences = lowCase.substring(1);
 //   // console.log(modifSentences);
-  
+
 //   var consonant = 'bcdfghjklmnpqrstvwxyz'; 
 //   for (var i=0; i<consonant.length; i++) {  // KENAPAA GA BISA di LOOP???
 //     // console.log(consonant[i], i);
-    
+
 //     if (firstWord !== consonant[i]) {
 //       // console.log(consonant[i]);
-      
+
 //       return 1 + consonantCounterRecursive(modifSentences);
 //     }
 //     else {

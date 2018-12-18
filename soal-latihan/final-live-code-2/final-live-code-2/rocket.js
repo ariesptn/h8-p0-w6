@@ -14,23 +14,21 @@ RULES:
 
 */
 
-function fastestClimber (string) {
-  // console.log(string);
-  var stringBaru = string + ','
-  var array = [];
-  var temp = '';
-  for (var i=0; i<stringBaru.length; i++) {
-    // console.log(string[i]);
-    if (stringBaru[i] !== ',') {
-      temp += stringBaru[i];
-    }
-    else {
-      array.push(temp);
-      temp = ''
+function fastestClimber(string) {
+  let players = string.split(',')
+  let playersObj = {}
+  let lowest;
+  for (let s of players) {
+    let player = s.split(' ')
+    let name = player[0].substring(0, player[0].length - 1)
+    let time = parseInt(player[1]) * 60 + parseInt(player[2])
+    playersObj[name] = time
+    lowest = lowest || name
+    if (time < playersObj[lowest]) {
+      lowest = name
     }
   }
-  console.log(array);
-  
+  return lowest
 }
 
 console.log(fastestClimber('Kyle: 1jam 30menit,Nein: 2jam 30menit,Light: 0jam 59menit')) // Light

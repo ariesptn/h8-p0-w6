@@ -52,38 +52,26 @@ NOTE:
 
 
 function squareNumber(num) {
-
-  if(num < 3){
+  if (num < 3) {
     return "Minimal input adalah 3"
   }
-
-  var result = [];
-  var counter = 1;
-  for (var i = 0; i < num; i++) {
-    // console.log(i)
+  let counter = 1
+  let result = []
+  for (let i = 0; i < num; i++) {
     result.push([])
-    for (var j = 0; j < num; j++) {
-      if(i%2 === 0){
-        result[i].push(j+counter)
-      } else if(i%2 === 1){
-        result[i].unshift(j+counter)
+    for (let j = 0; j < num; j++) {
+      let letter = 'o'
+      if (counter % 2 === 1) {
+        letter = 'x'
+      } else if (counter % 4 === 0) {
+        letter = '#'
       }
-    }
-    counter += num
-  }
-
-  for (var k = 0; k < result.length; k++) {
-    // console.log(result[i])
-    for (var m = 0; m < result[k].length; m++) {
-      // console.log(result[k][m])
-      var numbers = result[k][m];
-      if(numbers%4 === 0){
-        result[k][m] = "#"
-      } else if (numbers%2 === 1){
-        result[k][m] = "x"
-      } else if (numbers%2 === 0){
-        result[k][m] = "o"
+      if (i % 2 === 0) {
+        result[i].push(letter)
+      } else {
+        result[i].unshift(letter)
       }
+      counter++
     }
   }
   return result

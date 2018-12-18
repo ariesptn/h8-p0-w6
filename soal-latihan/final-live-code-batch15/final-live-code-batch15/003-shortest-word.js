@@ -29,42 +29,24 @@ Diarang menggunakan regex!
 // Nilai tidak valid (0) jika logic dan code berbeda!
 
 function shortestWords(words) {
-  // console.log(words)
-  var obj = {};
-  var array = words.toLowerCase().split(' ');
-  // console.log(array);
-  var temp = 0;
-  for (var i=0; i<array.length; i++) {
-    for (var j=0; j<array[i].length; j++) {
-      // console.log(array[i][j]);
-      temp += 1
-    }
-    if (obj[temp] === undefined) {
-      obj[temp] = [array[i]];
-    }
-    else if (obj[temp] !== undefined) {
-      obj[temp].push(array[i])
-    }
-    temp = 0;
+  let wordsSplit = words.split(' ')
+  let wordsObj = {}
+  for (let s of wordsSplit) {
+    wordsObj[s] = s.length;
   }
-  // console.log(obj);
-  var objKeys = Object.values(obj);
-  // console.log(objKeys[0]);
-  
-  // klo ada yg double:
-  var objFinal = {};
-  for (var i=0; i<objKeys[0].length; i++) {
-    if (objFinal[objKeys[0][i]] === undefined) {
-      objFinal[objKeys[0][i]] = 1;
-    }
-    else {
-      objFinal[objKeys[0][i]] += 1;
+  let lowest = wordsSplit[0].length;
+  for (let s in wordsObj) {
+    if (wordsObj[s] < lowest) {
+      lowest = wordsObj[s]
     }
   }
-
-  // console.log(objFinal);
-  
-  return Object.keys(objFinal);
+  let wordsArr = []
+  for (let s in wordsObj) {
+    if (wordsObj[s] === lowest) {
+      wordsArr.push(s)
+    }
+  }
+  return wordsArr
 }
 
 console.log(shortestWords('Do you want to become a great coder ?')); // ['a', '?']
@@ -95,7 +77,7 @@ console.log(shortestWords('I am diligent')); // ['I']
 //   // console.log(obj);
 //   var objKeys = Object.values(obj);
 //   // console.log(objKeys[0]);
-  
+
 //   // klo ada yg double:
 //   var objFinal = {};
 //   for (var i=0; i<objKeys[0].length; i++) {
@@ -108,5 +90,5 @@ console.log(shortestWords('I am diligent')); // ['I']
 //   }
 
 //   // console.log(objFinal);
-  
+
 //   return Object.keys(objFinal);

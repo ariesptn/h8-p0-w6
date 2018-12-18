@@ -18,22 +18,12 @@
 **/
 
 function hapusSimbolRec(str) {
-
-  if(str.length === 0){
-    return ""
+  if (str.length < 1) {
+    return ''
+  } else if ((str.toLowerCase().codePointAt(0) >= 97 && str.toLowerCase().codePointAt(0) <= 122) || (str.toLowerCase().codePointAt(0) >= 48 && str.toLowerCase().codePointAt(0) <= 57)) {
+    return str[0] + hapusSimbolRec(str.substring(1))
   } else {
-    var abjad = "abcdefghijklmnopqrstuvwxyz0123456789";
-    var modif = str.substring(1, str.length);
-    var word = ""
-    for(var i = 0; i < abjad.length; i++){
-      // console.log(str[i])
-      if(str[0] === abjad[i]){
-        // return str[0] + hapusSimbolRec(modif)
-        word += str[0]
-      }
-    }
-    // return "" + hapusSimbolRec(modif)
-    return word + hapusSimbolRec(modif)
+    return hapusSimbolRec(str.substring(1))
   }
 }
 

@@ -54,38 +54,19 @@ DISPLAY "count"
 
 */
 
-function evenPairsSum (str) {
-  
-  var count = 0;
-  if(str.length%2 === 0){
-    for(var i = 0; i < str.length; i++){
-      if(i%2 === 0){
-        var groups = str[i] + str[i+1];
-        // console.log(groups)
-        if(Number(groups)%2 === 0){
-          // console.log("======", Number(groups))
-          count += Number(groups)
-        }
-      }
-    }
-  } else {
-
-    var strNum = str + str[0];
-
-    for(var j = 0; j < strNum.length; j++){
-      // console.log(groups1[j])
-      if(j%2 === 0){
-        var groups1 = strNum[j] + strNum[j+1];
-        // console.log(groups1)
-        if(Number(groups1)%2 === 0){
-          count += Number(groups1)
-        }
-      }
-    }
-
+function evenPairsSum(str) {
+  let pairs = []
+  for (let i = 0; i < str.length; i += 2) {
+    let nextStr = str[i + 1] || str[0]
+    pairs.push(str[i] + nextStr)
   }
-  // console.log(count)
-  return count
+  let result = 0
+  for (s of pairs) {
+    if (parseInt(s) % 2 === 0) {
+      result += parseInt(s)
+    }
+  }
+  return result
 }
 
 console.log(evenPairsSum('2044101211')); // 86

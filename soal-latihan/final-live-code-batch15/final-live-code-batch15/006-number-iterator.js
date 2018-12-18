@@ -23,15 +23,10 @@ Dilarang menggunakan sintaks for / while dan regex
 */
 
 function numberIterator(num) {
-  
-  var strNum = String(num)
-  if(num === 0){
-    return strNum
+  if (num < 1) {
+    return 0
   } else {
-    var str = String(num);
-    var modif = num - 1;
-
-    return numberIterator(modif) + str
+    return numberIterator(num - 1) + num.toString()
   }
 }
 
