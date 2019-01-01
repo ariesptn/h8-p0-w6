@@ -2,29 +2,31 @@ function generateGymSchedule(members, schedules) {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const result = [];
     const isSportAvailableOnSpecifiedDay = (name, day) => {
-        let schedulesIndex = -1;
-        for (let s = 0; s < schedules.length; s++) {
-            if (schedules[s].name === name) {
-                schedulesIndex = s;
-                break;
-            }
-        }
+        let schedulesIndex = schedules.map(e => e.name).indexOf(name);
         if (schedulesIndex < 0) {
             return false;
         }
-        for (let d = 0; d < schedules[schedulesIndex].days.length; d++) {
-            if (schedules[schedulesIndex].days[d] === day) {
-                return true;
+        if (schedules[schedulesIndex].days.indexOf(day) < 0) {
+            return false;
+        }
+        let activities = new Set();
+        for (let r of result) {
+            if (r[day] !== undefined) {
+                activities.add(r[day]);
             }
         }
-        return false;
+        activities.add(schedules[schedulesIndex].name);
+        if (activities.size > 2) {
+            return false;
+        }
+        return true;
     };
-    for (let m = 0; m < members.length; m++) {
-        result.push({ name: members[m].name });
-        for (let s = 0; s < members[m].sports.length; s++) {
-            for (let d = 0; d < days.length; d++) {
-                if (isSportAvailableOnSpecifiedDay(members[m].sports[s], days[d]) && result[m][days[d]] === undefined) {
-                    result[m][days[d]] = members[m].sports[s];
+    for (let m of members) {
+        result.push({ name: m.name });
+        for (let s of m.sports) {
+            for (let d of days) {
+                if (isSportAvailableOnSpecifiedDay(s, d) && result[result.length - 1][d] === undefined) {
+                    result[result.length - 1][d] = s;
                     break;
                 }
             }
