@@ -16,15 +16,15 @@ function generateGymSchedule(members: Array<mem>, schedules: Array<sch>): void {
     const result: Array<res> = []
 
     const isSportAvailableOnSpecifiedDay = (name: string, day: string): boolean => {
-        let schedulesIndex = schedules.map(e => e.name).indexOf(name)
+        const schedulesIndex = schedules.map(e => e.name).indexOf(name)
         if (schedulesIndex < 0) {
             return false
         }
         if (schedules[schedulesIndex].days.indexOf(day) < 0) {
             return false
         }
-        let activities = new Set();
-        for (let r of result) {
+        const activities = new Set();
+        for (const r of result) {
             if (r[day] !== undefined) {
                 activities.add(r[day])
             }
@@ -36,10 +36,10 @@ function generateGymSchedule(members: Array<mem>, schedules: Array<sch>): void {
         return true
     }
 
-    for (let m of members) {
+    for (const m of members) {
         result.push({ name: m.name })
-        for (let s of m.sports) {
-            for (let d of days) {
+        for (const s of m.sports) {
+            for (const d of days) {
                 if (isSportAvailableOnSpecifiedDay(s, d) && result[result.length - 1][d] === undefined) {
                     result[result.length - 1][d] = s
                     break;
@@ -49,15 +49,15 @@ function generateGymSchedule(members: Array<mem>, schedules: Array<sch>): void {
     }
 
     let resultString = '    | '
-    for (let d = 0; d < days.length; d++) {
-        resultString += days[d] + ' | '
+    for (const d of days) {
+        resultString += d + ' | '
     }
     resultString += '\n'
-    for (let r = 0; r < result.length; r++) {
-        resultString += result[r].name.substring(0, 3) + ' | '
-        for (let d = 0; d < days.length; d++) {
-            if (result[r][days[d]] !== undefined) {
-                resultString += result[r][days[d]].substring(0, 3) + ' | '
+    for (const r of result) {
+        resultString += r.name.substring(0, 3) + ' | '
+        for (const d of days) {
+            if (r[d] !== undefined) {
+                resultString += r[d].substring(0, 3) + ' | '
             } else {
                 resultString += '    | '
             }
