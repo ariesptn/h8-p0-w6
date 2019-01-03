@@ -42,7 +42,7 @@ function generateGymSchedule(members: Array<mem>, schedules: Array<sch>): void {
             for (const d of days) {
                 if (isSportAvailableOnSpecifiedDay(s, d) && result[result.length - 1][d] === undefined) {
                     result[result.length - 1][d] = s
-                    break;
+                    break
                 }
             }
         }
@@ -165,4 +165,3 @@ Generate Gym Schedule adalah sebuah fungsi untuk menampilkan jadwal dari masing-
   - Semua kegiatan pada member harus terisi semua pada jadwal. **Asumsi jadwal kegiatan yang bentrok selalu memiliki alternatif hari lain (lihat pada test case)**
   - Pada masing-masing hari hanya boleh terdapat 2 jenis kegiatan saja. Jadi contoh apabila pada hari senin sudah ada kegiatan `karate` dan `krav maga`, apabila kegiatan `boxing` ternyata juga terdapat di hari senin, maka kegiatan `boxing` harus mencari hari yang lain.
 */
-
