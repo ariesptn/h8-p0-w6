@@ -142,7 +142,7 @@ var members2 = [{
     sports: ["Krav Maga"]
 }, {
     name: "Ryan",
-    sports: ["Boxing", "Muay Thai", "Jiu Jitsu", "Krav Maga"]
+    sports: ["Boxing", "Jiu Jitsu", "Krav Maga"]
 }]
 generateGymSchedule(members2, schedules2)
 /* OUTPUT
